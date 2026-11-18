@@ -40,7 +40,23 @@ form.addEventListener('submit',async event=>{
  try{
   const resp=await post({action:'login',entryKey,pin:pin.value});const data=await resp.json();
   if(!resp.ok)throw Error(data.error||'로그인하지 못했습니다.');
-  form.reset();await load(1);
+  form.reset();el('download').addEventListener('click',async ()=>{
+ const button=el('download');
+ if(button.disabled)return;
+ button.disabled=true;tell('엑셀 파일을 만들고 있습니다.');
+ try{
+  const response=await fetch('/api/admin?format=xlsx',{cache:'no-store'});
+  if(response.status===401){resetPanel();form.hidden=!privateLink();tell('로그인이 만료되었습니다. 관리자 전용 링크로 다시 접속해 주세요.',true);return;}
+  if(!response.ok)throw Error();
+  const url=URL.createObjectURL(await response.blob());
+  const name=decodeURIComponent((response.headers.get('Content-Disposition')??'').match(/filename\*=UTF-8''([^;]+)/)?.[1]??'키즈마켓_접수자.xlsx');
+  const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+  tell('엑셀 파일을 내려받았습니다. 개인정보가 담긴 파일이니 보관에 주의해 주세요.');
+ }catch{tell('엑셀 파일을 만들지 못했습니다. 다시 시도해 주세요.',true);}
+ finally{button.disabled=false;}
+});
+await load(1);
  }catch(err){tell(err.message||'다시 시도해 주세요.',true);pin.value='';pin.focus();}
  finally{button.disabled=false;}
 });
@@ -51,5 +67,21 @@ el('logout').addEventListener('click',async ()=>{
  if(pending)return;
  try{const response=await post({action:'logout'});if(!response.ok)throw Error(); entryKey='';resetPanel();form.hidden=true;tell('로그아웃했습니다. 다시 로그인하려면 관리자 전용 링크를 열어 주세요.');}
  catch{tell('로그아웃하지 못했습니다. 다시 시도해 주세요.',true);}
+});
+el('download').addEventListener('click',async ()=>{
+ const button=el('download');
+ if(button.disabled)return;
+ button.disabled=true;tell('엑셀 파일을 만들고 있습니다.');
+ try{
+  const response=await fetch('/api/admin?format=xlsx',{cache:'no-store'});
+  if(response.status===401){resetPanel();form.hidden=!privateLink();tell('로그인이 만료되었습니다. 관리자 전용 링크로 다시 접속해 주세요.',true);return;}
+  if(!response.ok)throw Error();
+  const url=URL.createObjectURL(await response.blob());
+  const name=decodeURIComponent((response.headers.get('Content-Disposition')??'').match(/filename\*=UTF-8''([^;]+)/)?.[1]??'키즈마켓_접수자.xlsx');
+  const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+  tell('엑셀 파일을 내려받았습니다. 개인정보가 담긴 파일이니 보관에 주의해 주세요.');
+ }catch{tell('엑셀 파일을 만들지 못했습니다. 다시 시도해 주세요.',true);}
+ finally{button.disabled=false;}
 });
 await load(1);
