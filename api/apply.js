@@ -4,7 +4,7 @@ export default async function handler(req,res){
   if(req.method!=='POST'){res.setHeader('Allow','POST');return res.status(405).json({error:'허용되지 않은 요청입니다.'});}
   if (req.headers['sec-fetch-site']==='cross-site' || !/^application\/json(?:;|$)/i.test(req.headers['content-type']??'')) return res.status(415).json({error:'신청 페이지에서 다시 제출해 주세요.'});
   const config=settings();
-  if (config.state!=='open') return res.status(409).json({error:config.state==='closed'?'모집이 마감되었습니다.':'아직 접수를 받을 수 없습니다.'});
+  if (config.state!=='open') return res.status(409).json({error:config.state==='closed'?'모집이 마감되었습니다.':config.state==='upcoming'?'11월 18일(수)부터 접수합니다.':'아직 접수를 받을 수 없습니다.'});
   let data=req.body;
   if(typeof data==='string'){try{data=JSON.parse(data);}catch{return res.status(400).json({error:'신청 정보를 확인해 주세요.'});}}
   if(JSON.stringify(data??null).length>4096) return res.status(413).json({error:'입력 내용이 너무 깁니다.'});
