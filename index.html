@@ -2,15 +2,15 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="가곡동 상상창고에서 열리는 와글와글 키즈마켓 벼룩시장 참여 신청"><title>키즈셀러 모집 | 가곡동 상상창고</title><link rel="stylesheet" href="/style.css"><script type="module" src="/main.js"></script></head>
 <body><main class="shell">
 <header class="hero"><div class="hero-copy"><p class="kicker">제26회 떠들썩 플프마켓 · 실습운영 2</p><p class="place">가곡동 <strong>상상창고</strong></p><h1>와글와글 키즈마켓<br><em>키즈셀러 모집</em></h1><p>아이와 함께 쓰던 물건에 새 주인을 찾아 주세요.</p></div><img src="/assets/kids-market.jpg" alt="아이들이 책과 장난감을 소개하는 벼룩시장"></header>
-<section class="info" aria-label="행사 안내"><dl><dt>행사일</dt><dd>2026년 11월 21일(토)<span id="hours"></span></dd><dt>장소</dt><dd>가곡동 상상창고 <small>(가곡9길 5)</small></dd><dt>참여 내용</dt><dd>어린이 중고물품 판매 및 교환</dd><dt id="deadline-label" hidden>신청 마감</dt><dd id="deadline" hidden></dd></dl><p class="notice"><strong>5팀 미만 모집 시 미운영</strong><br>이 기준은 와글와글 키즈마켓에만 적용됩니다.</p></section>
+<section class="info" aria-label="행사 안내"><dl><dt>행사일</dt><dd>2026년 11월 21일(토)<span id="hours">12:00~16:00</span></dd><dt>장소</dt><dd>가곡동 상상창고 <small>(가곡9길 5)</small></dd><dt>참여 내용</dt><dd>어린이·청소년 중고물품 판매 및 교환</dd><dt>모집 인원</dt><dd>선착순 10팀</dd><dt>접수 기간</dt><dd><time datetime="2026-11-18">11월 18일(수)</time>부터<br><time datetime="2026-11-20T18:00:00+09:00">11월 20일(금) 오후 6시</time>까지</dd></dl><p class="notice"><strong>5팀 미만 모집 시 미운영</strong><br>이 기준은 와글와글 키즈마켓에만 적용됩니다.<br>접수 마감 후 운영 여부를 신청한 보호자에게 문자로 안내합니다.</p></section>
 <section class="registration" aria-labelledby="form-title"><p class="section-tag">보호자가 신청해 주세요</p><h2 id="form-title">벼룩시장 참여 신청</h2><div id="status" role="status" aria-live="polite">접수 상태를 확인하고 있습니다.</div>
 <form id="application" hidden>
 <label for="guardianName">보호자 이름</label><input id="guardianName" name="guardianName" autocomplete="name" minlength="2" maxlength="40" required>
 <label for="phone">보호자 휴대전화</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="010-0000-0000" maxlength="17" required>
-<label for="kids">참여 어린이 수</label><input id="kids" name="kids" type="number" inputmode="numeric" min="1" max="20" value="1" required>
+<label for="kids">참여 어린이·청소년 수</label><input id="kids" name="kids" type="number" inputmode="numeric" min="1" max="20" value="1" required>
 <label for="items">판매·교환할 물품</label><textarea id="items" name="items" rows="3" minlength="2" maxlength="300" placeholder="예: 읽은 동화책, 상태 좋은 장난감" required></textarea>
 <div class="trap" aria-hidden="true"><label for="website">이 칸은 비워 두세요</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
-<details><summary>개인정보 수집·이용 안내</summary><p>수집 주체: 밀양시·밀양시도시재생센터·가곡재생팀(행사 운영)</p><p>항목: 보호자 이름·휴대전화, 참여 어린이 수, 물품 내용</p><p>목적: 신청 확인, 행사 운영 및 참여 안내</p><p id="retention"></p><p>동의를 거부할 수 있으며, 거부 시 온라인 신청이 어렵습니다. 물품란에 아동의 이름이나 기타 개인정보를 적지 말아 주세요.</p></details>
+<details><summary>개인정보 수집·이용 안내</summary><p>수집 주체: 밀양시·밀양시도시재생센터·가곡재생팀(행사 운영)</p><p>항목: 보호자 이름·휴대전화, 참여 어린이·청소년 수, 물품 내용</p><p>목적: 신청 확인, 행사 운영 및 운영 여부 문자 안내</p><p id="retention"></p><p>동의를 거부할 수 있으며, 거부 시 온라인 신청이 어렵습니다. 물품란에 아동의 이름이나 기타 개인정보를 적지 말아 주세요.</p></details>
 <label class="check"><input name="consent" type="checkbox" required> 개인정보 수집·이용에 동의합니다.</label>
 <button type="submit">참여 신청하기</button><p id="error" role="alert" hidden></p>
 </form><p id="contact" hidden></p></section>
