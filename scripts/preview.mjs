@@ -12,7 +12,7 @@ const server=createServer(async(req,res)=>{
  const p=new URL(req.url,'http://localhost').pathname;
  if(p==='/api/settings'&&req.method==='GET'){
   res.writeHead(200,{'Content-Type':'application/json'});
-  return res.end(JSON.stringify({state:'open',closeAt:null,retentionDays:30,contact:'',hours:''}));
+  return res.end(JSON.stringify({state:'open',closeAt:null,capacity:10,remaining:7,retentionDays:30,contact:'',hours:''}));
  }
  if(p==='/api/apply'&&req.method==='POST'){
   res.writeHead(503,{'Content-Type':'application/json'});

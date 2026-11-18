@@ -1,3 +1,4 @@
+import {dbHeaders} from '../lib/db.js';
 import {config,equal,issueSession,validSession,sessionCookie,SESSION_SECONDS} from '../lib/admin.js';
 
 export default async function handler(req,res){
@@ -7,7 +8,7 @@ export default async function handler(req,res){
  if(['cross-site','same-site'].includes(req.headers['sec-fetch-site']))return res.status(403).json({error:'관리자 화면에서 다시 시도해 주세요.'});
  const c=config();
  if(!c)return closed();
- const request=(path,options={})=>fetch(c.url+'/rest/v1/'+path,{...options,headers:{apikey:c.dbKey,...options.headers},signal:AbortSignal.timeout(8000)});
+ const request=(path,options={})=>fetch(c.url+'/rest/v1/'+path,{...options,headers:dbHeaders(c.dbKey,options.headers),signal:AbortSignal.timeout(8000)});
  if(req.method==='POST'){
   if(!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type']??''))return res.status(415).json({error:'관리자 화면에서 다시 시도해 주세요.'});
   let body=req.body;
